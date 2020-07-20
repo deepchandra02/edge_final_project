@@ -1,6 +1,3 @@
-# Simple Snake Game in Python 3 for Beginners
-# By @TokyoEdTech
-
 import turtle
 import time
 import random
@@ -19,13 +16,49 @@ wn.setup(width=600, height=600)
 wn.tracer(0) # Turns off the screen updates
 
 # Snake head
+
+
 head = turtle.Turtle()
 head.speed(0)
 head.shape("square")
-head.color("black")
+head.color("grey")
 head.penup()
-head.goto(0,0)
+head.goto(0, 0)
 head.direction = "stop"
+
+eye1 = turtle.Turtle()
+eye1.shape("square")
+eye1.color("white")
+eye1.shapesize(0.2)
+eye1.penup()
+eye1.goto(-5,5)
+eye1.direction = "stop"
+
+
+eye2 = turtle.Turtle()
+eye2.shape("square")
+eye2.color("white")
+eye2.shapesize(0.2)
+eye2.penup()
+eye2.goto(5,5)
+eye2.direction = "stop"
+
+b1= turtle.Turtle()
+b1.shape("square")
+b1.color("black")
+b1.shapesize(0.1)
+b1.penup()
+b1.goto(-5,5)
+b1.direction = "stop"
+
+
+b2 = turtle.Turtle()
+b2.shape("square")
+b2.color("black")
+b2.shapesize(0.1)
+b2.penup()
+b2.goto(5,5)
+b2.direction = "stop"
 
 # Snake food
 food = turtle.Turtle()
@@ -52,34 +85,115 @@ def go_up():
     if head.direction != "down":
         head.direction = "up"
 
+        eye1.direction = "up"
+        eye2.direction = "up"
+        b1.direction = "up"
+        b2.direction = "up"
+
 def go_down():
     if head.direction != "up":
         head.direction = "down"
+
+        eye1.direction = "down"
+        eye2.direction = "down"
+        b1.direction = "down"
+        b2.direction = "down"
 
 def go_left():
     if head.direction != "right":
         head.direction = "left"
 
+        eye1.direction = "left"
+        eye2.direction = "left"
+        b1.direction = "left"
+        b2.direction = "left"
+
 def go_right():
     if head.direction != "left":
         head.direction = "right"
 
+        eye1.direction = "right"
+        eye2.direction = "right"
+        b1.direction = "right"
+        b2.direction = "right"
+
 def move():
     if head.direction == "up":
+
         y = head.ycor()
+        y2 = eye1.ycor()
+        y3 = eye2.ycor()
+        y4 = b1.ycor()
+        y5 = b2.ycor()
+
         head.sety(y + 20)
+        eye1.sety(y2 + 20)
+        eye2.sety(y3 + 20)
+        b1.sety(y4 + 20)
+        b2.sety(y5 + 20)
+
+
+
+
 
     if head.direction == "down":
+
         y = head.ycor()
+        y2 = eye1.ycor()
+        y3 = eye2.ycor()
+        y4 = b1.ycor()
+        y5 = b2.ycor()
+
         head.sety(y - 20)
+        eye1.sety(y2 - 20)
+        eye2.sety(y3 - 20)
+        b1.sety(y4 - 20)
+        b2.sety(y5 - 20)
+
+
+
+
+
+
 
     if head.direction == "left":
+
+
         x = head.xcor()
+        x2 = eye1.xcor()
+        x3 = eye2.xcor()
+        x4 = b1.xcor()
+        x5 = b2.xcor()
+
         head.setx(x - 20)
+        eye1.setx(x2 - 20)
+        eye2.setx(x3 - 20)
+        b1.setx(x4 - 20)
+        b2.setx(x5 - 20)
+
+
+
 
     if head.direction == "right":
+
+
+
         x = head.xcor()
+        x2 = eye1.xcor()
+        x3 = eye2.xcor()
+        x4 = b1.xcor()
+        x5 = b2.xcor()
+
         head.setx(x + 20)
+        eye1.setx(x2 + 20)
+        eye2.setx(x3 + 20)
+        b1.setx(x4 + 20)
+        b2.setx(x5 + 20)
+
+
+
+
+
 
 # Keyboard bindings
 wn.listen()
@@ -96,12 +210,24 @@ while True:
     if head.xcor()>290 or head.xcor()<-290 or head.ycor()>290 or head.ycor()<-290:
         time.sleep(1)
         head.goto(0,0)
+
+        eye1.goto(-5,5)
+        eye2.goto(5,5)
+        b1.goto(-5,5)
+        b2.goto(5,5)
+
         head.direction = "stop"
+
+        eye1.direction = "stop"
+        eye2.direction = "stop"
+        b1.direction = "stop"
+        b2.direction = "stop"
+
 
         # Hide the segments
         for segment in segments:
             segment.goto(1000, 1000)
-        
+
         # Clear the segments list
         segments.clear()
 
@@ -112,7 +238,7 @@ while True:
         delay = 0.1
 
         pen.clear()
-        pen.write("Score: {}  High Score: {}".format(score, high_score), align="center", font=("Courier", 24, "normal")) 
+        pen.write("Score: {}  High Score: {}".format(score, high_score), align="center", font=("Courier", 24, "normal"))
 
 
     # Check for a collision with the food
@@ -138,9 +264,9 @@ while True:
 
         if score > high_score:
             high_score = score
-        
+
         pen.clear()
-        pen.write("Score: {}  High Score: {}".format(score, high_score), align="center", font=("Courier", 24, "normal")) 
+        pen.write("Score: {}  High Score: {}".format(score, high_score), align="center", font=("Courier", 24, "normal"))
 
     # Move the end segments first in reverse order
     for index in range(len(segments)-1, 0, -1):
@@ -154,19 +280,30 @@ while True:
         y = head.ycor()
         segments[0].goto(x,y)
 
-    move()    
+    move()
 
     # Check for head collision with the body segments
     for segment in segments:
         if segment.distance(head) < 20:
             time.sleep(1)
             head.goto(0,0)
+
+            eye1.goto(-5,5)
+            eye2.goto(5,5)
+            b1.goto(-5,5)
+            b2.goto(5,5)
+
             head.direction = "stop"
-        
+
+            eye1.direction = "stop"
+            eye2.direction = "stop"
+            b1.direction = "stop"
+            b2.direction = "stop"
+
             # Hide the segments
             for segment in segments:
                 segment.goto(1000, 1000)
-        
+
             # Clear the segments list
             segments.clear()
 
@@ -175,7 +312,7 @@ while True:
 
             # Reset the delay
             delay = 0.1
-        
+
             # Update the score display
             pen.clear()
             pen.write("Score: {}  High Score: {}".format(score, high_score), align="center", font=("Courier", 24, "normal"))
