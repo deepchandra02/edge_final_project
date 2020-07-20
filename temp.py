@@ -15,6 +15,37 @@ wn.bgcolor("green")
 wn.setup(width=600, height=600)
 wn.tracer(0) # Turns off the screen updates
 
+
+#gaming boundaries
+
+g1 = turtle.Turtle()
+g1.shape("square")
+g1.color("black")
+g1.penup()
+g1.goto(300,300)
+g1.direction = "stop"
+
+g2 = turtle.Turtle()
+g2.shape("square")
+g2.color("black")
+g2.penup()
+g2.goto(-300,300)
+g2.direction = "stop"
+
+g3 = turtle.Turtle()
+g3.shape("square")
+g3.color("black")
+g3.penup()
+g3.goto(300,-300)
+g3.direction = "stop"
+
+g4 = turtle.Turtle()
+g4.shape("square")
+g4.color("black")
+g4.penup()
+g4.goto(-300,-300)
+g4.direction = "stop"
+
 # Snake head
 
 
