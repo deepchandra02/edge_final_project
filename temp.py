@@ -275,8 +275,8 @@ while True:
     # Check for a collision with the food
     if head.distance(food) < 20:
         # Move the food to a random spot
-        x = random.randint(-290, 290)
-        y = random.randint(-290, 290)
+        x = random.randint(-280, 280)
+        y = random.randint(-280, 280)
         food.goto(x,y)
 
         # Add a segment
