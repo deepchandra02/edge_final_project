@@ -361,10 +361,10 @@ def new_game():
     wn.mainloop()
            
 def instruc():
-# instructions text!!
-    info ="1. Moves up when pressing “w”\n2. Moves down with “s”\n3. Moves right with “d”\n4. Moves left with “a”.\n5. Eat the food to grow in size.\n6. Moves at a speed that the player has an option to modify (increase-decrease) every time he plays.\n8. Different speeds have their high scores."
-    m = tkinter.messagebox.showinfo("Instructions", info)
-    m.pack()
+    # instructions text!!
+     info ="1.Use your keys “w” for up, “s” for down, “d” for right, and “a” for left.\n2. If you run the snake into the wall or its own tail: you lose.\n3. Eat the red balls to grow longer and gain points.\n4. For faster/slower speeds or a different background, go to options.\n\n ENJOY!! :)"
+     m = tkinter.messagebox.showinfo("Instructions", info)
+     m.pack()
         
 def options():
     option = tkinter.Tk()
