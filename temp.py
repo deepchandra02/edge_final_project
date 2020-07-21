@@ -8,6 +8,7 @@ delay = 0.1
 score = 0
 high_score = 0
 
+
 # Set up the screen
 wn = turtle.Screen()
 wn.title("Snake Game by @TokyoEdTech")
@@ -22,29 +23,32 @@ g1 = turtle.Turtle()
 g1.shape("square")
 g1.color("black")
 g1.penup()
-g1.goto(300,300)
+g1.goto(320,320)
 g1.direction = "stop"
 
 g2 = turtle.Turtle()
 g2.shape("square")
 g2.color("black")
 g2.penup()
-g2.goto(-300,300)
+g2.goto(-320,320)
 g2.direction = "stop"
 
 g3 = turtle.Turtle()
 g3.shape("square")
 g3.color("black")
 g3.penup()
-g3.goto(300,-300)
+g3.goto(320,-320)
 g3.direction = "stop"
 
 g4 = turtle.Turtle()
 g4.shape("square")
 g4.color("black")
 g4.penup()
-g4.goto(-300,-300)
+g4.goto(-320,-320)
 g4.direction = "stop"
+
+
+
 
 # Snake head
 
@@ -195,14 +199,14 @@ def move():
         x3 = eye2.xcor()
         x4 = b1.xcor()
         x5 = b2.xcor()
+        
 
         head.setx(x - 20)
         eye1.setx(x2 - 20)
         eye2.setx(x3 - 20)
         b1.setx(x4 - 20)
         b2.setx(x5 - 20)
-
-
+        
 
 
     if head.direction == "right":
@@ -214,13 +218,15 @@ def move():
         x3 = eye2.xcor()
         x4 = b1.xcor()
         x5 = b2.xcor()
-
+       
+        
+    
         head.setx(x + 20)
         eye1.setx(x2 + 20)
         eye2.setx(x3 + 20)
         b1.setx(x4 + 20)
         b2.setx(x5 + 20)
-
+        
 
 
 
@@ -238,7 +244,7 @@ while True:
     wn.update()
 
     # Check for a collision with the border
-    if head.xcor()>290 or head.xcor()<-290 or head.ycor()>290 or head.ycor()<-290:
+    if head.xcor()>280 or head.xcor()<-280 or head.ycor()>280 or head.ycor()<-280:
         time.sleep(1)
         head.goto(0,0)
 
