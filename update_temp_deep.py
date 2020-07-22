@@ -1,5 +1,6 @@
 import turtle
 import time
+from datetime import datetime
 import random
 import tkinter
 
@@ -271,6 +272,7 @@ def new_game():
             segments.clear()
     
             # Reset the score
+            store_score(score)
             score = 0
     
             # Reset the delay
@@ -347,6 +349,7 @@ def new_game():
                 segments.clear()
     
                 # Reset the score
+                store_score(score)
                 score = 0
     
                 # Reset the delay
@@ -372,6 +375,13 @@ def options():
     option.geometry('600x600')
     l1 = tkinter.Label(option, text="Speed").grid(column=0,row=0)
     spin1 = tkinter.Spinbox(option, from_=1,to=5, width=2).grid(column=1,row=0)
+
+def store_score(score):
+    file = open("score_logs.txt", "a")
+    file.write(str(datetime.now()))
+    file.write("\t\tScore: "+str(score)+"\n\n")
+    file.close()
+    
 
 window = tkinter.Tk()
 # window title name
