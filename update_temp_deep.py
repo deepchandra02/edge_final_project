@@ -4,8 +4,11 @@ from datetime import datetime
 import random
 import tkinter
 
+real_val = 0.1
+
+
 def new_game():
-    delay = 0.1
+    delay = real_val
     
     # Score
     score = 0
@@ -362,6 +365,7 @@ def new_game():
         time.sleep(delay)
     
     wn.mainloop()
+    turtle.Terminator()
            
 def instruc():
     # instructions text!!
@@ -370,11 +374,31 @@ def instruc():
      m.pack()
         
 def options():
+    def get_speed(value):
+        print(value)
+        global real_val
+        real_val = value
+        
+            
     option = tkinter.Tk()
     option.title("Options")
     option.geometry('600x600')
-    l1 = tkinter.Label(option, text="Speed").grid(column=0,row=0)
-    spin1 = tkinter.Spinbox(option, from_=1,to=5, width=2).grid(column=1,row=0)
+    #speed label
+    tkinter.Label(option, text="Speed").grid(column=0,row=0)
+    
+    #speed options
+    tkinter.Button(option, text = "1", command=lambda: get_speed(0.1)).grid(column=0,row=2)
+    tkinter.Button(option, text = "2", command=lambda: get_speed(0.090)).grid(column=1,row=2)
+    tkinter.Button(option, text = "3", command=lambda: get_speed(0.080)).grid(column=2,row=2)
+    tkinter.Button(option, text = "4", command=lambda: get_speed(0.070)).grid(column=3,row=2)
+    tkinter.Button(option, text = "5", command=lambda: get_speed(0.060)).grid(column=4,row=2)
+    tkinter.Button(option, text = "6", command=lambda: get_speed(0.050)).grid(column=5,row=2)
+    tkinter.Button(option, text = "7", command=lambda: get_speed(0.040)).grid(column=6,row=2)
+    tkinter.Button(option, text = "8", command=lambda: get_speed(0.030)).grid(column=7,row=2)
+    tkinter.Button(option, text = "9", command=lambda: get_speed(0.020)).grid(column=8,row=2)
+
+    #tkinter.Button(option, text="Set speed", command=lambda: get_speed).grid(column=3, row=0)
+     
 
 def store_score(score):
     file = open("score_logs.txt", "a")
@@ -389,8 +413,10 @@ window.title("Snake Game")
 window.geometry('600x600')
 heading = tkinter.Label(window, text="Welcome!", font=("Arial Bold",50)).pack()
 
-bt1 = tkinter.Button(window, text="New Game", bg="blue", fg="white", command = new_game).pack()
-bt2 = tkinter.Button(window, text="Scores", bg="blue", fg="white").pack()
-bt3 = tkinter.Button(window, text="Options", bg="blue", fg="white", command=options).pack()
-bt4 = tkinter.Button(window, text="Instructions", bg="blue", fg="white", command=instruc).pack()
+
+
+bt1 = tkinter.Button(window, text="New Game", bg="green",font=("Arial Bold",30), fg="white", command = new_game).pack()
+bt2 = tkinter.Button(window, text="Scores", bg="green",font=("Arial Bold",30), fg="white").pack()
+bt3 = tkinter.Button(window, text="Options", bg="green",font=("Arial Bold",30), fg="white", command=options).pack()
+bt4 = tkinter.Button(window, text="Instructions", bg="green", font=("Arial Bold",30),fg="white", command=instruc).pack()
 window.mainloop()
