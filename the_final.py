@@ -5,6 +5,7 @@ import random
 import tkinter
 import pygame
 from pygame import mixer
+from tkinter import*
 pygame.mixer.init()
 mixer.music.load("Snake Runner (Soundtrack).mp3")
 pygame.mixer.music.play()
@@ -375,7 +376,7 @@ def new_game():
            
 def instruc():
     # instructions text!!
-     info ="1.Use your keys “w” for up, “s” for down, “d” for right, and “a” for left.\n2. If you run the snake into the wall or its own tail: you lose.\n3. Eat the red balls to grow longer and gain points.\n4. For faster/slower speeds or a different background, go to options.\n\n ENJOY!! :)"
+     info ="1.Use your keys “w” for up, “s” for down, “d” for right, and “a” for left.\n2. If you run the snake into the wall or its own tail: you lose.\n3. Eat the red balls to grow longer and gain points.\n4. For faster/slower speeds, go to options.\n\n ENJOY!! :)"
      m = tkinter.messagebox.showinfo("Instructions", info)
      m.pack()
         
@@ -443,17 +444,18 @@ window = tkinter.Tk()
 
 # window title name
 window.title("Snake Game")
-window.geometry('550x550')
+window.geometry('1000x1000')
 
-h1 = tkinter.Label(window, text="Welcome", font=("Comic Sans MS",50)).pack()
-h2 = tkinter.Label(window, text="to the", font=("Comic Sans MS",50)).pack()
-h3 = tkinter.Label(window, text="Snake Game!!", font=("Comic Sans MS",50)).pack()
+Tops = tkinter.Frame(window,bg="white",width = 1600,height=50,relief=SUNKEN)
+Tops.pack(side=TOP)
+
+lblinfo = tkinter.Label(Tops, font=( 'aria' ,30, 'bold' ),text="Welcome to the Snake Game!!",fg="firebrick3",bd=10,anchor='w')
+lblinfo.grid(row=0,column=0)
 
 def stop_sound():
-  pygame.mixer.music.pause()
+    pygame.mixer.music.pause()
 def play_sound():
-  pygame.mixer.music.unpause()
-    
+    pygame.mixer.music.unpause()  
 
 
 bt1 = tkinter.Button(window, text="New Game", bg="green",font=("Arial Bold",30), fg="white", command = new_game).pack()
