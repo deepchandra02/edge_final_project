@@ -1,6 +1,6 @@
 import turtle
 import time
-# from datetime import datetime
+from datetime import datetime
 import random
 import tkinter
 import pygame
@@ -13,6 +13,7 @@ real_val = 0.1
 
 
 def new_game():
+    session = real_val
     delay = real_val
     
     # Score
@@ -280,11 +281,11 @@ def new_game():
             segments.clear()
     
             # Reset the score
-            # store_score(score)
+            store_score(score,session)
             score = 0
     
-            # Reset the delay
-            delay = 0.1
+            # Reset speed to the same as in beginning of game
+            delay = session
     
             pen.clear()
             pen.write("Score: {}  High Score: {}".format(score, high_score), align="center", font=("Courier", 24, "normal"))
@@ -306,7 +307,7 @@ def new_game():
             segments.append(new_segment)
     
             # Shorten the delay
-            delay -= 0.001
+            delay -= 0.005
     
             # Increase the score
             score += 10
@@ -357,11 +358,11 @@ def new_game():
                 segments.clear()
     
                 # Reset the score
-                # store_score(score)
+                store_score(score,session)
                 score = 0
     
-                # Reset the delay
-                delay = 0.1
+                # Reset speed to the same as in beginning of game
+                delay = session
     
                 # Update the score display
                 pen.clear()
@@ -387,7 +388,7 @@ def options():
             
     option = tkinter.Tk()
     option.title("Options")
-    option.geometry('550x550')
+    option.geometry('500x500')
     #speed label
     tkinter.Label(option, text="Speed").grid(column=0,row=0)
     
@@ -402,21 +403,51 @@ def options():
     tkinter.Button(option, text = "8", command=lambda: get_speed(0.030)).grid(column=7,row=2)
     tkinter.Button(option, text = "9", command=lambda: get_speed(0.020)).grid(column=8,row=2)
 
-    #tkinter.Button(option, text="Set speed", command=lambda: get_speed).grid(column=3, row=0)
+
      
 
-# def store_score(score):
-#     file = open("score_logs.txt", "a")
-#     file.write(str(datetime.now()))
-#     file.write("\t\tScore: "+str(score)+"\n\n")
-#     file.close()
+def store_score(score,v):
+    lvl = 0
+    if v == 0.1:
+        lvl = 1
+    elif v == 0.090:
+        lvl = 2
+    elif v == 0.080:
+        lvl = 3
+    elif v == 0.070:
+        lvl = 4
+    elif v == 0.060:
+        lvl = 5
+    elif v == 0.050:
+        lvl = 6
+    elif v == 0.040:
+        lvl = 7
+    elif v == 0.030:
+        lvl = 8
+    elif v == 0.020:
+        lvl = 9        
+    
+    file = open("score_logs.txt", "a")
+    file.write(str(datetime.now()))
+    file.write("\t\tScore: "+str(score)+"\t\tSpeed Level: "+str(lvl)+"\n\n")
+    file.close()
+    
+def show_score():
+    file = open("score_logs.txt", "r")
+    info = file.read()
+    tkinter.messagebox.showinfo("Score Records", info)
+    file.close()
     
 
 window = tkinter.Tk()
+
 # window title name
 window.title("Snake Game")
 window.geometry('550x550')
-heading = tkinter.Label(window, text="Welcome!", font=("Arial Bold",50)).pack()
+
+h1 = tkinter.Label(window, text="Welcome", font=("Comic Sans MS",50)).pack()
+h2 = tkinter.Label(window, text="to the", font=("Comic Sans MS",50)).pack()
+h3 = tkinter.Label(window, text="Snake Game!!", font=("Comic Sans MS",50)).pack()
 
 def stop_sound():
   pygame.mixer.music.pause()
@@ -426,7 +457,7 @@ def play_sound():
 
 
 bt1 = tkinter.Button(window, text="New Game", bg="green",font=("Arial Bold",30), fg="white", command = new_game).pack()
-# bt2 = tkinter.Button(window, text="Scores", bg="green",font=("Arial Bold",30), fg="white").pack()
+bt2 = tkinter.Button(window, text="Scores", bg="green",font=("Arial Bold",30), fg="white", command=show_score).pack()
 bt3 = tkinter.Button(window, text="Options", bg="green",font=("Arial Bold",30), fg="white", command=options).pack()
 bt4 = tkinter.Button(window, text="Instructions", bg="green", font=("Arial Bold",30),fg="white", command=instruc).pack()
 bt5 = tkinter.Button(window, text= "sound on", bg = "yellow",height= 1, width = 8, font=("Arial Bold",15), fg = "black", command= play_sound)
