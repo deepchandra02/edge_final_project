@@ -8,7 +8,7 @@ from pygame import mixer
 from tkinter import*
 pygame.mixer.init()
 mixer.music.load("Crazy frog soundtrack.mp3")
-pygame.mixer.music.play()
+pygame.mixer.music.play(-1)
 
 real_val = 0.1
 
