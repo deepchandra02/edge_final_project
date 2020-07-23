@@ -7,7 +7,7 @@ import pygame
 from pygame import mixer
 from tkinter import*
 pygame.mixer.init()
-mixer.music.load("Snake Runner (Soundtrack).mp3")
+mixer.music.load("Crazy frog soundtrack.mp3")
 pygame.mixer.music.play()
 
 real_val = 0.1
@@ -378,7 +378,6 @@ def instruc():
     # instructions text!!
      info ="1.Use your keys “w” for up, “s” for down, “d” for right, and “a” for left.\n2. If you run the snake into the wall or its own tail: you lose.\n3. Eat the red balls to grow longer and gain points.\n4. For faster/slower speeds, go to options.\n\n ENJOY!! :)"
      m = tkinter.messagebox.showinfo("Instructions", info)
-     m.pack()
         
 def options():
     def get_speed(value):
@@ -403,9 +402,6 @@ def options():
     tkinter.Button(option, text = "7", command=lambda: get_speed(0.040)).grid(column=6,row=2)
     tkinter.Button(option, text = "8", command=lambda: get_speed(0.030)).grid(column=7,row=2)
     tkinter.Button(option, text = "9", command=lambda: get_speed(0.020)).grid(column=8,row=2)
-
-
-     
 
 def store_score(score,v):
     lvl = 0
@@ -439,6 +435,11 @@ def show_score():
     tkinter.messagebox.showinfo("Score Records", info)
     file.close()
     
+def stop_sound():
+    pygame.mixer.music.pause()
+    
+def play_sound():
+    pygame.mixer.music.unpause()  
 
 window = tkinter.Tk()
 
@@ -451,12 +452,6 @@ Tops.pack(side=TOP)
 
 lblinfo = tkinter.Label(Tops, font=( 'aria' ,30, 'bold' ),text="Welcome to the Snake Game!!",fg="firebrick3",bd=10,anchor='w')
 lblinfo.grid(row=0,column=0)
-
-def stop_sound():
-    pygame.mixer.music.pause()
-def play_sound():
-    pygame.mixer.music.unpause()  
-
 
 bt1 = tkinter.Button(window, text="New Game", bg="green",font=("Arial Bold",30), fg="white", command = new_game).pack()
 bt2 = tkinter.Button(window, text="Scores", bg="green",font=("Arial Bold",30), fg="white", command=show_score).pack()
